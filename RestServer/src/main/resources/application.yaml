@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 spring:
 
   datasource:
@@ -17,4 +18,31 @@ server:
   port: 8081
 logging:
   level:
+=======
+spring:
+  security:
+    user:
+      username: user
+      password: '{noop}ppar'
+      roles:
+        - SERVICE
+        - ADMIN
+  datasource:
+    url: jdbc:postgresql://localhost:5430/catalogue
+    username: catalogue
+    password: catalogue
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+jwt:
+  secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
+  lifetime: 30m
+
+server:
+  port: 8081
+logging:
+  level:
+>>>>>>> 121134a607736c29885f4209e238a91c0cae2796
     sql: info

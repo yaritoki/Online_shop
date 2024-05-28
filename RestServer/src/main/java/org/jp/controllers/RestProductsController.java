@@ -26,8 +26,8 @@ private final ProductService productService;
 private final MessageSource messageSource;
 
 @GetMapping
-    public Iterable<Product> findProduct(){
-    return this.productService.findAllProducts();
+    public Iterable<Product> findProduct(@RequestParam(name="filter", required = false) String filter){
+    return this.productService.findAllProducts(filter);
 }
 
 @PostMapping

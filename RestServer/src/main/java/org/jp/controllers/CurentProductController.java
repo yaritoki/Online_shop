@@ -33,13 +33,14 @@ public class CurentProductController {
     }
 
     @GetMapping
-    //@PermitAll()
+    @PreAuthorize("PermitAll()")
     public ResponseEntity<?> findProduct(@ModelAttribute("product") Product product){
     return ResponseEntity.ok(product);
     }
 
     @PatchMapping
-  //  @PreAuthorize("hasRole('ROLE_SERVICE')")
+
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> editProduct(@PathVariable("productId") int productId,
                                          @Valid @RequestBody UpdateProductPayload payload,
                                          BindingResult bindingResult, Locale locale){
@@ -65,7 +66,7 @@ public class CurentProductController {
 
 
     @DeleteMapping
-  //  @PreAuthorize("hasRole('ROLE_SERVICE')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteProduct(@PathVariable("productId") int productId){
         productService.deleteProduct(productId);
         return ResponseEntity.noContent().build();

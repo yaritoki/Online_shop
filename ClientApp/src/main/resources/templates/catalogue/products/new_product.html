@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hовый товар</title>
+</head>
+<body>
+<a data-th-href="@{/catalogue/products/list}">&larr; Список товаров </a>
+<h1>Новый товар</h1>
+<div data-th-if="${errors}">
+    <h2>Допущены ошибки</h2>
+    <ul>
+        <li data-th-each="error:${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<form method="post" data-th-action="@{/catalogue/products/create}">
+    <label>
+        Название<br>
+        <input type="text" name="title"  data-th-value="${payload?.title}">
+    </label><br>
+    <label>
+        Описание<br>
+        <textarea name="details" data-th-text="${payload?.details}"></textarea>
+    </label><br>
+    <label>
+        путь до картинки<br>
+        <input type="text" name="img" data-th-value="${payload.img}" >
+    </label><br>
+    <label>
+        Стоимость<br>
+        <input type="number" name="price" data-th-value="${payload.price}" >
+    </label><br>
+    <button type="submit">Создавть</button>
+</form>
+</body>
+</html>

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-//@Component
+@Component
 public class JwtToken {
     @Value("${jwt.secret}")
     private String sectret;

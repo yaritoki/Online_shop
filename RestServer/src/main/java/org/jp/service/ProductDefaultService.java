@@ -15,8 +15,12 @@ public class ProductDefaultService implements ProductService{
     private final ProductRepository productRepository;
 
     @Override
-    public Iterable<Product> findAllProducts() {
-        return this.productRepository.findAll();
+    public Iterable<Product> findAllProducts(String filter) {
+        if (filter!=null && filter.isBlank()) {
+            return this.productRepository.findAllByTitleLikeIgnoreCase("%"+filter+"%");
+        }else {
+            return this.productRepository.findAll();
+        }
     }
 
     @Override
@@ -31,6 +35,7 @@ public class ProductDefaultService implements ProductService{
     }
 
     @Override
+    @Transactional
     public void deleteProduct(int productId) {
         this.productRepository.deleteById(productId);
     }

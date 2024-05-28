@@ -19,13 +19,13 @@ import java.net.http.HttpRequest;
 import java.security.SignatureException;
 import java.util.stream.Collectors;
 
-//@Component
+@Component
 @RequiredArgsConstructor
-public class JwtRequstFilter{ //extends OncePerRequestFilter{
+public class JwtRequstFilter extends OncePerRequestFilter{
 
     private final JwtToken jwtToken;
 
-      //  @Override
+    @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
             String authHeader=request.getHeader("Authorization");
             String username=null;
@@ -47,7 +47,7 @@ public class JwtRequstFilter{ //extends OncePerRequestFilter{
                         jwtToken.getUserRole(jwt).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList())
                 );
                 SecurityContextHolder.getContext().setAuthentication(token);
-                filterChain.doFilter(request,response);
             }
-        }
+        filterChain.doFilter(request,response);
+    }
 }
